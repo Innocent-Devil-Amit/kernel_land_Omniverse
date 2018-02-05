@@ -344,5 +344,12 @@ config ARCH_MSM8909
 	select MSM_BIMC_BWMON
 	select ARCH_WANT_KMAP_ATOMIC_FLUSH
 
+config FORCE_FAST_CHARGE
+	bool "Force AC charge mode at will"
+	default y
+	help
+	  A simple sysfs interface to force adapters that
+	  are detected as USB to charge as AC.
+	  
 endmenu
 endif
