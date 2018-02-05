@@ -122,6 +122,13 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
 
+config CPU_FREQ_DEFAULT_GOV_ZZMOOVE
+	bool "zzmoove"
+	select CPU_FREQ_GOV_ZZMOOVE
+        select CPU_FREQ_GOV_PERFORMANCE
+	help
+	  Use the CPUFreq governor 'zzmoove' as default.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -193,6 +200,23 @@ config CPU_FREQ_GOV_INTERACTIVE
 
 	  If in doubt, say N.
 
+config CPU_FREQ_GOV_ZZMOOVE
++	tristate "'zzmoove' cpufreq governor"
++	depends on CPU_FREQ
++	help
++	  ZZMoove governor is based on the modified conservative (original author
++	  Alexander Clouter alex@digriz.org.uk) 'smoove' governor from
++	  Michael Weingaertner mialwe@googlemail.com
++	  (source: https://github.com/mialwe/mngb/)
++
++	  Modified by Zane Zaminsky since November 2012 (and further improved in
++	  2013/14 by Zane Zaminsky and Yank555) to be hotplug-able and optimzed
++	  for use with Samsung I9300. CPU Hotplug modifications partially taken
++	  from ktoonservative governor from ktoonsez KT747-JB kernel
++	  (source: https://github.com/ktoonsez/KT747-JB)
++
++	  If in doubt, say N.	
+
 config CPU_FREQ_GOV_CONSERVATIVE
 	tristate "'conservative' cpufreq governor"
 	depends on CPU_FREQ
@@ -216,18 +240,6 @@ config CPU_FREQ_GOV_CONSERVATIVE
 	  For details, take a look at linux/Documentation/cpu-freq.
 
 	  If in doubt, say N.
-
-config CPU_FREQ_DEFAULT_GOV_SMARTASS2
-	bool "smartassV2"
-	select CPU_FREQ_GOV_SMARTASS
-	select CPU_FREQ_GOV_PERFORMANCE
-	help
-	  Use the CPUFreq governor 'smartassV2' as default. This allows
-	  you to get a full dynamic frequency capable system by simply
-	  loading your cpufreq low-level hardware driver.
-	  Be aware that not all cpufreq drivers support the lagfree
-	  governor. If unsure have a look at the help section of the
-          driver. Fallback governor will be the performance governor.
 
 config CPU_FREQ_GOV_SCHED
 	bool "'sched' cpufreq governor"
