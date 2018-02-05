@@ -121,20 +121,6 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  you to get a full dynamic cpu frequency capable system by simply
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
-	  
-config CPU_FREQ_DEFAULT_GOV_SCHED
-	bool "sched"
-	select CPU_FREQ_GOV_INTERACTIVE
-	help
-	  Use the CPUfreq governor 'sched' as default. This scales
-	  cpu frequency using CPU utilization estimates from the
-	  scheduler.
-	  
-	  config CPU_FREQ_DEFAULT_GOV_SMARTASSV2
-	bool "smartass2"
-	select CPU_FREQ_GOV_SMARTASSV2
-	help
-		Use the CPUFreq governor 'smartassV2' as default.
 
 config CPU_FREQ_DEFAULT_GOV_SMARTMAX
 	bool "smartmax"
